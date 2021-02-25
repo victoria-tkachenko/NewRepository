@@ -1,4 +1,4 @@
-package lesson7.online;
+package Lesson7.online;
 
 /**
  * Created by Aleksandr Gladkov [Anticisco]

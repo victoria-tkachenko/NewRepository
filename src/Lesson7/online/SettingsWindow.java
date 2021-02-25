@@ -1,4 +1,4 @@
-package lesson7.online;
+package Lesson7.online;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
