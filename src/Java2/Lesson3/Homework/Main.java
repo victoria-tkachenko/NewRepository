@@ -43,15 +43,15 @@ public class Main {
 
         Orange orange = new Orange();
 
-        ArrayList <Orange> orangeArrayList1 = new ArrayList<Orange>();
-        Box <Orange> orangeBox1 = new Box<Orange>(orangeArrayList1);
+        ArrayList<Orange> orangeArrayList1 = new ArrayList<Orange>();
+        Box<Orange> orangeBox1 = new Box<Orange>(orangeArrayList1);
 
         orangeBox1.addFruit(orange);
         orangeBox1.addFruit(orange);
         orangeBox1.addFruit(orange);
 
-        ArrayList <Orange> orangeArrayList2 = new ArrayList<Orange>();
-        Box <Orange> orangeBox2 = new Box<Orange>(orangeArrayList2);
+        ArrayList<Orange> orangeArrayList2 = new ArrayList<Orange>();
+        Box<Orange> orangeBox2 = new Box<Orange>(orangeArrayList2);
         orangeBox2.addFruit(orange);
         orangeBox2.addFruit(orange);
         orangeBox2.addFruit(orange);

@@ -29,7 +29,7 @@ public class Box<T extends Fruit> {
     }
 
     public void moveToAnotherBox(Box<T> box) {
-        fruitList.addAll(fruitList);// тут видимо что-то не совсем так, потому что вес коробки в итоге не меняется.
+        fruitList .addAll(box.getFruitList());// тут видимо что-то не совсем так, потому что вес коробки в итоге не меняется.
         fruitList.clear();
     }
 
