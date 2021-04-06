@@ -1,5 +1,7 @@
 package Java2.Lesson5.online.Homework;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +34,6 @@ public class Main {
 
     public static void dataReader(File file) {
 
-        ArrayList<int[]> dataList = new ArrayList<int[]>();
         AppData appData = new AppData(new String[1], new int[10][3]);
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             //читаем заголовок
@@ -40,30 +41,27 @@ public class Main {
             appData.setHeader(header);
 
             //читаем данные
-            // не разобралась как правильно написать , чтобы считать данные
             String temStr;
-            while ((temStr = reader.readLine()) != null) ;
-            String[] values = temStr.split(";");
-
-            int[] intLine = new int[values.length];
-            for (int i = 0; i < values.length; i++) {
-                intLine[i] = Integer.parseInt(values[i]);
-                dataList.add(intLine);
+            int[][] data = new int[3][header.length];
+            int j = 0;
+            while ((temStr = reader.readLine()) != null) {
+                String[] values = temStr.split(";");
+                for (int i = 0; i < values.length; i++) {
+                    data[j][i] = Integer.parseInt(values[i]);
+                }
+                j++;
             }
-            int[][] data = new int[dataList.size()][];
-            for (int i = 0; i < dataList.size(); i++) {
-                data[i] = dataList.get(i);
-            }
-
             appData.setData(data);
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        System.out.println(appData.toString());
+
     }
+
     
     public static void main(String[] args) {
 
@@ -79,7 +77,6 @@ public class Main {
         AppData appData = new AppData(header, data);
         dataWriter(appData, file);
         dataReader(file);
-
     }
 }
 
