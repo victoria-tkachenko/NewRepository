@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WeatherForecast {
-
     @JsonProperty("now_dt")
     private String currentDate;
 
@@ -14,9 +13,7 @@ public class WeatherForecast {
 
     @Override
     public String toString() {
-        return "WeatherForecast{" +
-                "date='" + currentDate + '\'' +
-                '}';
+        return "Погода на дату: " + currentDate;
     }
 
     public String getDate() {
