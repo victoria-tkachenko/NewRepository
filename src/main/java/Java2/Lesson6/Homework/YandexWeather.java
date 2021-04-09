@@ -1,5 +1,6 @@
 package Java2.Lesson6.Homework;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -63,7 +64,11 @@ public class YandexWeather {
         //создаю объект для чтения
         WeatherForecast weatherForecast = objectMapper.readValue(body, WeatherForecast.class);
 
-        //JSON большой, непонятно как добраться до подполей, поэтому вывела только текущую дату
         System.out.println(weatherForecast);
+
+        String currentTemperature = objectMapper.readTree(body).at("/fact/temp").asText();
+        System.out.println("Температура воздуха в Санкт-Петербурге сейчас: " + currentTemperature);
+
+
     }
 }
