@@ -1,7 +1,7 @@
 package Java2.Lesson8.project;
 
-import Java2.Lesson7.project.Period;
-import Java2.Lesson7.project.WeatherModel;
+import Java2.Lesson8.project.Period;
+import Java2.Lesson8.project.WeatherModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class AccuWeatherModel implements WeatherModel {
+
     private static final String PROTOKOL = "http";
     private static final String API_KEY = "qxyZGUu6M73DM9nYVzxntzXmMx2AxcBd";
     private static final String BASE_HOST = "dataservice.accuweather.com";
@@ -29,7 +30,6 @@ public class AccuWeatherModel implements WeatherModel {
 
     private static final OkHttpClient okHttpClient = new OkHttpClient();
     private static final ObjectMapper objectMapper = new ObjectMapper();
-
 
     public void getWeather(Period period, String selectedCity) throws IOException {
         String cityKey = detectCityKey(selectedCity);
@@ -50,12 +50,16 @@ public class AccuWeatherModel implements WeatherModel {
 
             Response response = okHttpClient.newCall(request).execute();
             String responseString = response.body().string();
-//            System.out.println(responseString);
 
-              // вывод данных в читабельном виде
-               List<WeatherResponse> weatherResponse = objectMapper.readValue(responseString, new TypeReference<List<WeatherResponse>> () {
-               });
-                System.out.println(weatherResponse);
+            // вывод данных в читабельном виде
+            List<WeatherResponse> weatherResponse = objectMapper.readValue(responseString, new TypeReference<List<WeatherResponse>> () {
+            });
+            System.out.println(weatherResponse);
+
+            //TODO: вызвать метод сохранения погоды в базу из DataBaseRepository, предварительно из responseString
+            //достав нужные данные для создания объекта Weather
+            System.out.println(responseString);
+            //TODO: Тут нужно вывести полученные данные в читабельном виде
         }
 
         if (period == Period.FIVE_DAYS) {
@@ -84,12 +88,12 @@ public class AccuWeatherModel implements WeatherModel {
             String forecast = objectMapper.readTree(fiveDaysResponseString).at("/Headline/Text").asText();
             System.out.println("Прогноз погоды на "+ effectiveDate + " - " + forecast);
         }
+    }
 
-        @Override
-        public void getSavedWeatherData() {
-            //TODO: Обратиться к  DataBaseRepository и вызвать метод getSavedWeatherData
-        }
-
+    @Override
+    public void getSavedWeatherData() {
+        //TODO: Обратиться к  DataBaseRepository и вызвать метод getSavedWeatherData
+    }
 
     public String detectCityKey(String selectedCity) throws IOException {
         HttpUrl httpUrl = new HttpUrl.Builder()
@@ -114,7 +118,7 @@ public class AccuWeatherModel implements WeatherModel {
         String cityKey = objectMapper.readTree(responseString).get(0).at("/Key").asText();
 
         return cityKey;
-        //TODO: Тут нужно вывести полученные данные в читабельном виде
     }
-}
+    }
+
 

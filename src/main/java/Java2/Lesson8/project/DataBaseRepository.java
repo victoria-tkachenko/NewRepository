@@ -34,9 +34,46 @@ public class DataBaseRepository {
     }
 
     //TODO: Реализовать метод для считывания данных о погоде
-    //public List<Weather> getSavedWeatherData() {
-    //    //statement.executeQuery(select.....)
-    //}
+    public void getSavedWeatherData() throws SQLException {
+//        statement.executeQuery(select.....)
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:geekbrains.db")) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from weather");
+            while (resultSet.next()) {
+                System.out.print(resultSet.getString("id"));
+                System.out.print(" ");
+                System.out.print(resultSet.getString("city"));
+                System.out.print(" ");
+                System.out.print(resultSet.getString("localdate"));
+                System.out.print(" ");
+                System.out.print(resultSet.getString("temperature"));
+                System.out.print(" ");
+                System.out.print(resultSet.getString("weather_text"));
+                System.out.println(" ");
+            }
+        }
+    }
+
+//        public List<Weather> getSavedWeatherData() throws SQLException {
+////        statement.executeQuery(select.....)
+//        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:geekbrains.db")) {
+//            Statement statement = connection.createStatement();
+//            ResultSet resultSet = statement.executeQuery("select * from weather");
+//            while (resultSet.next()) {
+//                System.out.print(resultSet.getString("id"));
+//                System.out.print(" ");
+//                System.out.print(resultSet.getString("city"));
+//                System.out.print(" ");
+//                System.out.print(resultSet.getString("localdate"));
+//                System.out.print(" ");
+//                System.out.print(resultSet.getString("temperature"));
+//                System.out.print(" ");
+//                System.out.print(resultSet.getString("weather_text"));
+//                System.out.println(" ");
+//            }
+//        }
+//    }
+
 
     public static void main(String[] args) throws SQLException {
         DataBaseRepository dataBaseRepository = new DataBaseRepository();

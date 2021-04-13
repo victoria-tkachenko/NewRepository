@@ -1,5 +1,7 @@
 package Java2.Lesson8.project;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class WeatherResponse {
     @JsonProperty("LocalObservationDateTime")
     private String localObservationDateTime;
