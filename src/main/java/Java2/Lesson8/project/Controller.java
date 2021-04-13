@@ -11,8 +11,8 @@ public class Controller {
                 weatherModel.getWeather(Period.NOW, selectedCity);
                 break;
             case GET_WEATHER_IN_NEXT_FIVE_DAYS:
-                //your code here
-                throw new IOException("Метод не реализован!");
+                weatherModel.getWeather(Period.FIVE_DAYS, selectedCity);
+                break;
                 //TODO: Добавить 3 опцию из Functionality(enum)
         }
     }
