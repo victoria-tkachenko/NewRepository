@@ -1,12 +1,12 @@
 package Java2.Lesson8.project;
 
-import Java2.Lesson7.project.Controller;
+import Java2.Lesson8.project.Controller;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class UserInterfaceView {
-    Java2.Lesson7.project.Controller controller = new Controller();
+Controller controller = new Controller();
 
     public void runInterface() {
         Scanner scanner = new Scanner(System.in);
@@ -16,7 +16,7 @@ public class UserInterfaceView {
             String city = scanner.nextLine();
 
             System.out.println("Введите 1 для получения текущей погоды, " +
-                    "введите 2 для получения прогноза погоды на 5 дней, для выхода введите \"выход\"");
+                    "введите 2 для получения прогноза погоды на 5 дней, "  + "введите 3 для вывода погоды из базы, для выхода введите \"выход\"");
 
             //TODO: поддержать 3 пункт меню (вывод из базы) в интерфейсе
 
@@ -24,6 +24,7 @@ public class UserInterfaceView {
 
             try {
                 controller.getWeather(command, city);
+
             } catch (IOException e) {
                 e.printStackTrace();
                 continue;
