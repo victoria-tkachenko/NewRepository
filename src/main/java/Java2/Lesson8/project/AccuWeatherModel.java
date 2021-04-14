@@ -2,6 +2,7 @@ package Java2.Lesson8.project;
 
 import Java2.Lesson8.project.Period;
 import Java2.Lesson8.project.WeatherModel;
+import Java2.Lesson8.project.entity.Weather;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class AccuWeatherModel implements WeatherModel {
@@ -51,15 +53,24 @@ public class AccuWeatherModel implements WeatherModel {
             Response response = okHttpClient.newCall(request).execute();
             String responseString = response.body().string();
 
-            // вывод данных в читабельном виде
-            List<WeatherResponse> weatherResponse = objectMapper.readValue(responseString, new TypeReference<List<WeatherResponse>> () {
+            //TODO: Тут нужно вывести полученные данные в читабельном виде
+            List<WeatherResponse> weatherResponse = objectMapper.readValue(responseString, new TypeReference<List<WeatherResponse>>() {
             });
             System.out.println(weatherResponse);
 
             //TODO: вызвать метод сохранения погоды в базу из DataBaseRepository, предварительно из responseString
             //достав нужные данные для создания объекта Weather
-            System.out.println(responseString);
-            //TODO: Тут нужно вывести полученные данные в читабельном виде
+
+            String city = "город не указан в JSON";
+            String localDateTime = objectMapper.readTree(responseString).get(0).at("/LocalObservationDateTime").asText();
+            String weatherText = objectMapper.readTree(responseString).get(0).at("/WeatherText").asText();
+            String temperature = objectMapper.readTree(responseString).get(0).at("/Temperature/Metric/Value").asText();
+            DataBaseRepository dataBaseRepository = new DataBaseRepository();
+            try {
+                dataBaseRepository.saveWeatherData(new Weather(city, localDateTime, weatherText, temperature));
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
         if (period == Period.FIVE_DAYS) {
@@ -86,13 +97,19 @@ public class AccuWeatherModel implements WeatherModel {
 
             String effectiveDate = objectMapper.readTree(fiveDaysResponseString).at("/Headline/EffectiveDate").asText();
             String forecast = objectMapper.readTree(fiveDaysResponseString).at("/Headline/Text").asText();
-            System.out.println("Прогноз погоды на "+ effectiveDate + " - " + forecast);
+            System.out.println("Прогноз погоды на " + effectiveDate + " - " + forecast);
         }
     }
 
     @Override
     public void getSavedWeatherData() {
         //TODO: Обратиться к  DataBaseRepository и вызвать метод getSavedWeatherData
+        DataBaseRepository dataBaseRepository = new DataBaseRepository();
+        try {
+            dataBaseRepository.getSavedWeatherData();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public String detectCityKey(String selectedCity) throws IOException {
@@ -119,6 +136,6 @@ public class AccuWeatherModel implements WeatherModel {
 
         return cityKey;
     }
-    }
+}
 
 
