@@ -12,7 +12,7 @@ Controller controller = new Controller();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Введите название города");
+            System.out.println("Введите название города. Для выхода введите \"выход\".");
             String city = scanner.nextLine();
 
             System.out.println("Введите 1 для получения текущей погоды, " +
@@ -21,6 +21,9 @@ Controller controller = new Controller();
             //TODO: поддержать 3 пункт меню (вывод из базы) в интерфейсе
 
             String command = scanner.nextLine();
+
+            //выход из программы
+            if (city.equals("выход")) break;
 
             try {
                 controller.getWeather(command, city);

@@ -13,7 +13,10 @@ public class Controller {
             case GET_WEATHER_IN_NEXT_FIVE_DAYS:
                 weatherModel.getWeather(Period.FIVE_DAYS, selectedCity);
                 break;
-                //TODO: Добавить 3 опцию из Functionality(enum)
+            //TODO: Добавить 3 опцию из Functionality(enum)
+            case GET_SAVED_WEATHER_DATA:
+                weatherModel.getSavedWeatherData();
+                break;
         }
     }
 }

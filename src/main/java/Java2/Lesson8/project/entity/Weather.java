@@ -1,10 +1,10 @@
 package Java2.Lesson8.project.entity;
 
 public class Weather {
-//create table weather(id integer primary key autoincrement, city text, localdate text, weather_text text, temperature real)
+    //create table weather(id integer primary key autoincrement, city text, localdate text, weather_text text, temperature real)
     private String city;
     private String localdate;
-    private double temperature;
+    private String temperature;
     private String weatherText;
 
     public String getCity() {
@@ -23,11 +23,11 @@ public class Weather {
         this.localdate = localdate;
     }
 
-    public double getTemperature() {
+    public String getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(double temperature) {
+    public void setTemperature(String temperature) {
         this.temperature = temperature;
     }
 
@@ -39,7 +39,7 @@ public class Weather {
         this.weatherText = weatherText;
     }
 
-    public Weather(String city, String localdate, String weatherText, double temperature) {
+    public Weather(String city, String localdate, String weatherText, String temperature) {
         this.city = city;
         this.localdate = localdate;
         this.weatherText = weatherText;
