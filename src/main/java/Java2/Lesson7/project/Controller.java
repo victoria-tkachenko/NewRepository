@@ -13,7 +13,9 @@ public class Controller {
                 break;
             case GET_WEATHER_IN_NEXT_FIVE_DAYS:
                 //your code here
-                throw new IOException("Метод не реализован!");
+                weatherModel.getWeather(Period.FIVE_DAYS, selectedCity);
+                break;
+//                throw new IOException("Метод не реализован!");
         }
     }
 }
