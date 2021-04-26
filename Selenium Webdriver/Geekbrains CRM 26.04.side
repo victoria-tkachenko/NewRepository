@@ -5,7 +5,7 @@
   "url": "https://crm.geekbrains.space/",
   "tests": [{
     "id": "0ee77144-74a3-4822-a7f8-5c378f9f0720",
-    "name": "Create Organization",
+    "name": "Positive Create Project",
     "commands": [{
       "id": "25ce6ec5-5cd5-4632-ba2f-6ddf12e69063",
       "comment": "",
@@ -142,21 +142,7 @@
         ["xpath=//form[@id='crm_project-uid-6083e28243b39']/div[2]/div[3]/div/div/div[2]/fieldset/div/div/div[2]/input", "xpath:idRelative"],
         ["xpath=//div/div/div[2]/input", "xpath:position"]
       ],
-      "value": "NewPr2"
-    }, {
-      "id": "0f36f8b2-96c1-4ebd-ba51-0015e5c4a42b",
-      "comment": "",
-      "command": "click",
-      "target": "name=crm_project[financeSource]",
-      "targets": [
-        ["id=crm_project_financeSource-uid-6083dcd42e8cc", "id"],
-        ["name=crm_project[financeSource]", "name"],
-        ["css=#crm_project_financeSource-uid-6083dcd42e8cc", "css:finder"],
-        ["xpath=//select[@id='crm_project_financeSource-uid-6083dcd42e8cc']", "xpath:attributes"],
-        ["xpath=//div[@id='uniform-crm_project_financeSource-uid-6083dcd42e8cc']/select", "xpath:idRelative"],
-        ["xpath=//div[4]/div[2]/div/select", "xpath:position"]
-      ],
-      "value": ""
+      "value": "NewPr3"
     }, {
       "id": "d66082e7-e1e3-4b6c-80f5-2f074f5c5a9b",
       "comment": "",
@@ -307,7 +293,7 @@
     }]
   }, {
     "id": "c2de3ab7-e313-4f2e-bdfe-8b91ea4ed9bd",
-    "name": "Create contact person",
+    "name": "Positive Create contact person",
     "commands": [{
       "id": "8c590882-e474-4581-8291-31b9bd8731e9",
       "comment": "",
@@ -455,24 +441,48 @@
       ],
       "value": "Петр"
     }, {
-      "id": "90fa52f5-02ea-4eb9-8998-6a5c4ec0a92f",
+      "id": "81eba0e4-0441-4c26-909c-c12f3a786b66",
       "comment": "",
       "command": "click",
-      "target": "id=select2-drop-mask",
+      "target": "css=.select2-chosen",
       "targets": [
-        ["id=select2-drop-mask", "id"],
-        ["css=#select2-drop-mask", "css:finder"],
-        ["xpath=//div[@id='select2-drop-mask']", "xpath:attributes"],
-        ["xpath=//div[8]", "xpath:position"]
+        ["css=.select2-chosen", "css:finder"],
+        ["xpath=//div[@id='s2id_crm_contact_company-uid-6086e370b766b']/a/span", "xpath:idRelative"],
+        ["xpath=//div/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Укажите организацию')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "9f4535d8-4f90-469d-b8c4-dcf6b615b851",
+      "id": "10ab4f8a-8d4b-4afd-b976-9c1c2b895e19",
+      "comment": "",
+      "command": "click",
+      "target": "css=.select2-input",
+      "targets": [
+        ["css=.select2-input", "css:finder"],
+        ["xpath=(//input[@type='text'])[15]", "xpath:attributes"],
+        ["xpath=//div[@id='select2-drop']/div/input", "xpath:idRelative"],
+        ["xpath=//div[13]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d0fff1cf-db1f-447c-8fa5-c295fae1627b",
       "comment": "",
       "command": "type",
-      "target": "id=select2-drop-mask",
+      "target": "css=.select2-input",
+      "targets": [
+        ["css=.select2-input", "css:finder"],
+        ["xpath=(//input[@type='text'])[15]", "xpath:attributes"],
+        ["xpath=//div[@id='select2-drop']/div/input", "xpath:idRelative"],
+        ["xpath=//div[14]/div/input", "xpath:position"]
+      ],
+      "value": "1234"
+    }, {
+      "id": "6c1a09df-192f-4a13-8f2e-2d60ece13d42",
+      "comment": "",
+      "command": "clickAt",
+      "target": "css=.select2-arrow",
       "targets": [],
-      "value": "label=1234"
+      "value": ""
     }, {
       "id": "6e954238-6ad2-4036-9595-13a8f9f5adc2",
       "comment": "",
@@ -505,13 +515,13 @@
       "id": "90925a8c-35ff-426a-b0ae-2b640c6b38e0",
       "comment": "",
       "command": "click",
-      "target": "xpath=//button[contains(text(),'Сохранить и закрыть'0]",
+      "target": "xpath=//button[contains(.,'Сохранить')]",
       "targets": [
-        ["css=.btn-group:nth-child(4) > .btn", "css:finder"],
-        ["xpath=(//button[@type='submit'])[4]", "xpath:attributes"],
-        ["xpath=//form[@id='crm_contact-uid-6083f2ababc8a']/div/div/div/div[2]/div/div[4]/button", "xpath:idRelative"],
-        ["xpath=//div[4]/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Сохранить и закрыть')]", "xpath:innerText"]
+        ["css=.btn-group:nth-child(3) > .btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
+        ["xpath=//form[@id='crm_contact-uid-6086e2f244853']/div/div/div/div[2]/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Сохранить')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
